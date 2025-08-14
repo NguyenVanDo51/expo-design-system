@@ -34,6 +34,7 @@ export function Container({
       maxWidth: maxWidths[maxWidth],
       paddingHorizontal: theme.spacing[padding],
       alignSelf: 'center',
+      flex: 1,
     },
   });
 

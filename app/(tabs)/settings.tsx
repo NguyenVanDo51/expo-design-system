@@ -64,9 +64,9 @@ function SettingItem({
 
   return (
     <TouchableOpacity style={styles.container} onPress={onPress} disabled={!onPress}>
-      <Container style={styles.iconContainer}>
+      <View style={styles.iconContainer}>
         {icon}
-      </Container>
+      </View>
       
       <Stack style={styles.content} spacing={1}>
         <Text variant="body">{title}</Text>
@@ -75,12 +75,12 @@ function SettingItem({
         )}
       </Stack>
       
-      <Container style={styles.rightSection}>
+      <View style={styles.rightSection}>
         {rightElement}
         {showChevron && onPress && (
           <ChevronRight size={20} color={theme.colors.neutral[400]} />
         )}
-      </Container>
+      </View>
     </TouchableOpacity>
   );
 }
