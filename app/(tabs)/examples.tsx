@@ -1,51 +1,19 @@
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet, Alert } from 'react-native';
+import { ScrollView, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useTheme } from '@/hooks/useTheme';
+import { useCommonStyles } from '@/hooks/useCommonStyles';
 import { Container, Stack, Grid } from '@/components/layout';
 import { Text, Card, Button, Input } from '@/components/ui';
 import { User, Mail, Phone, MapPin, Calendar } from 'lucide-react-native';
 
 export default function ExamplesScreen() {
-  const theme = useTheme();
+  const styles = useCommonStyles();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     address: '',
-  });
-
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: theme.colors.neutral[50],
-    },
-    header: {
-      backgroundColor: theme.colors.neutral[0],
-      paddingVertical: theme.spacing[6],
-      borderBottomWidth: 1,
-      borderBottomColor: theme.colors.neutral[200],
-    },
-    profileCard: {
-      backgroundColor: theme.colors.primary[600],
-      padding: theme.spacing[6],
-    },
-    avatar: {
-      width: 80,
-      height: 80,
-      borderRadius: 40,
-      backgroundColor: theme.colors.primary[500],
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    statCard: {
-      backgroundColor: theme.colors.neutral[0],
-      borderRadius: theme.borderRadius.lg,
-      padding: theme.spacing[4],
-      alignItems: 'center',
-      ...theme.shadows.sm,
-    },
   });
 
   const handleSubmit = () => {
@@ -59,31 +27,31 @@ export default function ExamplesScreen() {
   ];
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.common.container}>
       {/* Header */}
-      <Container style={styles.header}>
+      <Container style={styles.common.header}>
         <Stack spacing={2} align="center">
           <Text variant="h2">Examples</Text>
-          <Text variant="body" color="secondary" style={{ textAlign: 'center' }}>
+          <Text variant="body" color="secondary" style={styles.textAlign.center}>
             Real-world implementations of our design system
           </Text>
         </Stack>
       </Container>
 
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Container style={{ paddingVertical: theme.spacing[6] }}>
+        <Container style={styles.spacing.py6}>
           <Stack spacing={8}>
             
             {/* Profile Card Example */}
             <Stack spacing={4}>
               <Text variant="h4">Profile Card</Text>
-              <Card style={styles.profileCard} padding={0}>
+              <Card style={[styles.bg.primary600, styles.spacing.p6]} padding={0}>
                 <Stack spacing={6} align="center">
                   <LinearGradient
-                    colors={[theme.colors.primary[400], theme.colors.secondary[500]]}
-                    style={styles.avatar}
+                    colors={['#60A5FA', '#6366F1']}
+                    style={[styles.size.w20, styles.size.h20, styles.rounded.full, styles.flex.itemsCenter, styles.flex.justifyCenter]}
                   >
-                    <User size={32} color={theme.colors.neutral[0]} />
+                    <User size={32} color="#FFFFFF" />
                   </LinearGradient>
                   
                   <Stack spacing={2} align="center">
@@ -95,7 +63,7 @@ export default function ExamplesScreen() {
 
                   <Grid columns={3} spacing={4}>
                     {stats.map((stat, index) => (
-                      <Card key={index} style={styles.statCard} padding={3}>
+                      <Card key={index} style={[styles.bg.white, styles.rounded.lg, styles.spacing.p4, styles.flex.itemsCenter, styles.shadow.sm]} padding={0}>
                         <Text variant="h6" color="primary">{stat.value}</Text>
                         <Text variant="caption" color="muted">{stat.label}</Text>
                       </Card>
@@ -181,9 +149,9 @@ export default function ExamplesScreen() {
               <Grid columns={2} spacing={4}>
                 <Card padding={5}>
                   <Stack spacing={4} align="center">
-                    <Mail size={32} color={theme.colors.primary[600]} />
-                    <Text variant="h6" style={{ textAlign: 'center' }}>Email Support</Text>
-                    <Text variant="bodySmall" color="secondary" style={{ textAlign: 'center' }}>
+                    <Mail size={32} color="#2563EB" />
+                    <Text variant="h6" style={styles.textAlign.center}>Email Support</Text>
+                    <Text variant="bodySmall" color="secondary" style={styles.textAlign.center}>
                       Get help via email
                     </Text>
                     <Button variant="outline" size="small">Contact</Button>
@@ -192,9 +160,9 @@ export default function ExamplesScreen() {
 
                 <Card padding={5}>
                   <Stack spacing={4} align="center">
-                    <Phone size={32} color={theme.colors.success[600]} />
-                    <Text variant="h6" style={{ textAlign: 'center' }}>Phone Support</Text>
-                    <Text variant="bodySmall" color="secondary" style={{ textAlign: 'center' }}>
+                    <Phone size={32} color="#16A34A" />
+                    <Text variant="h6" style={styles.textAlign.center}>Phone Support</Text>
+                    <Text variant="bodySmall" color="secondary" style={styles.textAlign.center}>
                       Call us directly
                     </Text>
                     <Button variant="primary" size="small">Call Now</Button>
@@ -203,9 +171,9 @@ export default function ExamplesScreen() {
 
                 <Card padding={5}>
                   <Stack spacing={4} align="center">
-                    <MapPin size={32} color={theme.colors.secondary[600]} />
-                    <Text variant="h6" style={{ textAlign: 'center' }}>Visit Office</Text>
-                    <Text variant="bodySmall" color="secondary" style={{ textAlign: 'center' }}>
+                    <MapPin size={32} color="#4F46E5" />
+                    <Text variant="h6" style={styles.textAlign.center}>Visit Office</Text>
+                    <Text variant="bodySmall" color="secondary" style={styles.textAlign.center}>
                       Schedule a meeting
                     </Text>
                     <Button variant="secondary" size="small">Schedule</Button>
@@ -214,9 +182,9 @@ export default function ExamplesScreen() {
 
                 <Card padding={5}>
                   <Stack spacing={4} align="center">
-                    <Calendar size={32} color={theme.colors.warning[600]} />
-                    <Text variant="h6" style={{ textAlign: 'center' }}>Book Demo</Text>
-                    <Text variant="bodySmall" color="secondary" style={{ textAlign: 'center' }}>
+                    <Calendar size={32} color="#D97706" />
+                    <Text variant="h6" style={styles.textAlign.center}>Book Demo</Text>
+                    <Text variant="bodySmall" color="secondary" style={styles.textAlign.center}>
                       See it in action
                     </Text>
                     <Button variant="ghost" size="small">Book Now</Button>

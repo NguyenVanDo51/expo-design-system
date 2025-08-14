@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet, Switch } from 'react-native';
+import { ScrollView, Switch, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useTheme } from '@/hooks/useTheme';
+import { useCommonStyles } from '@/hooks/useCommonStyles';
 import { Container, Stack } from '@/components/layout';
-import { Text, Card, Button } from '@/components/ui';
+import { Text, Card, Button, Input } from '@/components/ui';
 import { 
   Bell, 
   Shield, 
@@ -32,88 +32,51 @@ function SettingItem({
   rightElement, 
   showChevron = true 
 }: SettingItemProps) {
-  const theme = useTheme();
-
-  const styles = StyleSheet.create({
-    container: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      paddingVertical: theme.spacing[4],
-      paddingHorizontal: theme.spacing[4],
-      backgroundColor: theme.colors.neutral[0],
-      borderRadius: theme.borderRadius.lg,
-      ...theme.shadows.sm,
-    },
-    iconContainer: {
-      width: 40,
-      height: 40,
-      borderRadius: theme.borderRadius.lg,
-      backgroundColor: theme.colors.primary[100],
-      alignItems: 'center',
-      justifyContent: 'center',
-      marginRight: theme.spacing[3],
-    },
-    content: {
-      flex: 1,
-    },
-    rightSection: {
-      flexDirection: 'row',
-      alignItems: 'center',
-    },
-  });
+  const styles = useCommonStyles();
 
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress} disabled={!onPress}>
-      <Container style={styles.iconContainer}>
+    <TouchableOpacity style={[styles.common.settingItem]} onPress={onPress} disabled={!onPress}>
+      <View style={[styles.common.iconContainer, styles.spacing.mr3]}>
         {icon}
-      </Container>
+      </View>
       
-      <Stack style={styles.content} spacing={1}>
+      <Stack style={styles.flex.flex1} spacing={1}>
         <Text variant="body">{title}</Text>
         {description && (
           <Text variant="bodySmall" color="secondary">{description}</Text>
         )}
       </Stack>
       
-      <Container style={styles.rightSection}>
+      <View style={[styles.flex.flexRow, styles.flex.itemsCenter]}>
         {rightElement}
         {showChevron && onPress && (
-          <ChevronRight size={20} color={theme.colors.neutral[400]} />
+          <ChevronRight size={20} color="#A3A3A3" />
         )}
-      </Container>
+      </View>
     </TouchableOpacity>
   );
 }
 
 export default function SettingsScreen() {
-  const theme = useTheme();
+  const styles = useCommonStyles();
   const [notifications, setNotifications] = useState(true);
   const [darkMode, setDarkMode] = useState(false);
-
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: theme.colors.neutral[50],
-    },
-    header: {
-      backgroundColor: theme.colors.neutral[0],
-      paddingVertical: theme.spacing[6],
-      borderBottomWidth: 1,
-      borderBottomColor: theme.colors.neutral[200],
-    },
-    section: {
-      marginBottom: theme.spacing[6],
-    },
-    sectionHeader: {
-      paddingHorizontal: theme.spacing[4],
-      paddingBottom: theme.spacing[2],
-    },
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    address: '',
   });
 
+  const handleSubmit = () => {
+    console.log('Form submitted:', formData);
+    // Handle form submission logic here
+  };
+
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.common.container}>
       {/* Header */}
-      <Container style={styles.header}>
+      <Container style={styles.common.header}>
         <Stack spacing={2} align="center">
           <Text variant="h2">Settings</Text>
           <Text variant="body" color="secondary" style={{ textAlign: 'center' }}>
@@ -123,21 +86,21 @@ export default function SettingsScreen() {
       </Container>
 
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Container style={{ paddingVertical: theme.spacing[6] }}>
+        <Container style={styles.spacing.py6}>
           <Stack spacing={8}>
             
             {/* Account Section */}
-            <Stack style={styles.section} spacing={3}>
-              <Text variant="h5" style={styles.sectionHeader}>Account</Text>
+            <Stack style={styles.spacing.mb6} spacing={3}>
+              <Text variant="h5" style={[styles.spacing.px4, styles.spacing.pb2]}>Account</Text>
               <Stack spacing={2}>
                 <SettingItem
-                  icon={<User size={20} color={theme.colors.primary[600]} />}
+                  icon={<User size={20} color="#2563EB" />}
                   title="Profile"
                   description="Manage your personal information"
                   onPress={() => {}}
                 />
                 <SettingItem
-                  icon={<Shield size={20} color={theme.colors.success[600]} />}
+                  icon={<Shield size={20} color="#16A34A" />}
                   title="Privacy & Security"
                   description="Control your privacy settings"
                   onPress={() => {}}
@@ -146,11 +109,11 @@ export default function SettingsScreen() {
             </Stack>
 
             {/* Preferences Section */}
-            <Stack style={styles.section} spacing={3}>
-              <Text variant="h5" style={styles.sectionHeader}>Preferences</Text>
+            <Stack style={styles.spacing.mb6} spacing={3}>
+              <Text variant="h5" style={[styles.spacing.px4, styles.spacing.pb2]}>Preferences</Text>
               <Stack spacing={2}>
                 <SettingItem
-                  icon={<Bell size={20} color={theme.colors.warning[600]} />}
+                  icon={<Bell size={20} color="#D97706" />}
                   title="Notifications"
                   description="Enable push notifications"
                   rightElement={
@@ -158,17 +121,17 @@ export default function SettingsScreen() {
                       value={notifications}
                       onValueChange={setNotifications}
                       trackColor={{ 
-                        false: theme.colors.neutral[300], 
-                        true: theme.colors.primary[600] 
+                        false: '#D4D4D4', 
+                        true: '#2563EB' 
                       }}
-                      thumbColor={theme.colors.neutral[0]}
+                      thumbColor="#FFFFFF"
                     />
                   }
                   showChevron={false}
                 />
                 
                 <SettingItem
-                  icon={<Palette size={20} color={theme.colors.secondary[600]} />}
+                  icon={<Palette size={20} color="#4F46E5" />}
                   title="Dark Mode"
                   description="Switch to dark theme"
                   rightElement={
@@ -176,17 +139,17 @@ export default function SettingsScreen() {
                       value={darkMode}
                       onValueChange={setDarkMode}
                       trackColor={{ 
-                        false: theme.colors.neutral[300], 
-                        true: theme.colors.primary[600] 
+                        false: '#D4D4D4', 
+                        true: '#2563EB' 
                       }}
-                      thumbColor={theme.colors.neutral[0]}
+                      thumbColor="#FFFFFF"
                     />
                   }
                   showChevron={false}
                 />
                 
                 <SettingItem
-                  icon={<Globe size={20} color={theme.colors.info[600]} />}
+                  icon={<Globe size={20} color="#0284C7" />}
                   title="Language"
                   description="English (US)"
                   onPress={() => {}}
@@ -195,18 +158,18 @@ export default function SettingsScreen() {
             </Stack>
 
             {/* Support Section */}
-            <Stack style={styles.section} spacing={3}>
-              <Text variant="h5" style={styles.sectionHeader}>Support</Text>
+            <Stack style={styles.spacing.mb6} spacing={3}>
+              <Text variant="h5" style={[styles.spacing.px4, styles.spacing.pb2]}>Support</Text>
               <Stack spacing={2}>
                 <SettingItem
-                  icon={<Bell size={20} color={theme.colors.neutral[600]} />}
+                  icon={<Bell size={20} color="#525252" />}
                   title="Help Center"
                   description="Find answers to common questions"
                   onPress={() => {}}
                 />
                 
                 <SettingItem
-                  icon={<Mail size={20} color={theme.colors.neutral[600]} />}
+                  icon={<Mail size={20} color="#525252" />}
                   title="Contact Support"
                   description="Get help from our team"
                   onPress={() => {}}
@@ -267,7 +230,7 @@ export default function SettingsScreen() {
             {/* Logout */}
             <Card>
               <SettingItem
-                icon={<LogOut size={20} color={theme.colors.error[600]} />}
+                icon={<LogOut size={20} color="#DC2626" />}
                 title="Sign Out"
                 description="Sign out of your account"
                 onPress={() => {}}
