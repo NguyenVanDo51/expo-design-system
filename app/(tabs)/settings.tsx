@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet, Switch } from 'react-native';
+import { ScrollView, StyleSheet, Switch, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '@/hooks/useTheme';
 import { Container, Stack } from '@/components/layout';
@@ -89,6 +89,17 @@ export default function SettingsScreen() {
   const theme = useTheme();
   const [notifications, setNotifications] = useState(true);
   const [darkMode, setDarkMode] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    address: '',
+  });
+
+  const handleSubmit = () => {
+    console.log('Form submitted:', formData);
+    // Handle form submission logic here
+  };
 
   const styles = StyleSheet.create({
     container: {
