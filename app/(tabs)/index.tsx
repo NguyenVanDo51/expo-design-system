@@ -1,58 +1,31 @@
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useTheme } from '@/hooks/useTheme';
+import { useCommonStyles } from '@/hooks/useCommonStyles';
 import { Container, Stack } from '@/components/layout';
 import { Text, Card, Button } from '@/components/ui';
 import { Sparkles, Zap, Shield } from 'lucide-react-native';
 
 export default function HomeScreen() {
-  const theme = useTheme();
-
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: theme.colors.neutral[50],
-    },
-    gradient: {
-      paddingVertical: theme.spacing[12],
-      paddingHorizontal: theme.spacing[4],
-    },
-    heroCard: {
-      marginTop: theme.spacing[8],
-    },
-    featureCard: {
-      flex: 1,
-      minHeight: 120,
-    },
-    iconContainer: {
-      width: 48,
-      height: 48,
-      borderRadius: theme.borderRadius.xl,
-      backgroundColor: theme.colors.primary[100],
-      alignItems: 'center',
-      justifyContent: 'center',
-      marginBottom: theme.spacing[3],
-    },
-  });
+  const styles = useCommonStyles();
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.common.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Hero Section */}
         <LinearGradient
-          colors={[theme.colors.primary[600], theme.colors.secondary[600]]}
-          style={styles.gradient}
+          colors={['#2563EB', '#4F46E5']}
+          style={[styles.spacing.py12, styles.spacing.px4]}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
         >
           <Container>
             <Stack spacing={6} align="center">
-              <Text variant="h1" color="inverse" style={{ textAlign: 'center' }}>
+              <Text variant="h1" color="inverse" style={styles.textAlign.center}>
                 Design System
               </Text>
-              <Text variant="bodyLarge" color="inverse" style={{ textAlign: 'center', opacity: 0.9 }}>
+              <Text variant="bodyLarge" color="inverse" style={[styles.textAlign.center, styles.opacity.opacity90]}>
                 A comprehensive, production-ready design system built with React Native and Expo
               </Text>
               <Button variant="secondary" size="large">
@@ -62,7 +35,7 @@ export default function HomeScreen() {
           </Container>
         </LinearGradient>
 
-        <Container style={styles.heroCard}>
+        <Container style={styles.spacing.mt8}>
           <Stack spacing={8}>
             {/* Overview Card */}
             <Card elevation="md">
@@ -82,53 +55,53 @@ export default function HomeScreen() {
             {/* Features Grid */}
             <Text variant="h4">Key Features</Text>
             <Stack direction="horizontal" spacing={4}>
-              <Card style={styles.featureCard} padding={6}>
+              <Card style={[styles.flex.flex1, styles.size.minH120]} padding={6}>
                 <Stack spacing={3} align="center">
                   <LinearGradient
-                    colors={[theme.colors.primary[500], theme.colors.primary[600]]}
-                    style={styles.iconContainer}
+                    colors={['#3B82F6', '#2563EB']}
+                    style={[styles.size.w12, styles.size.h12, styles.rounded.xl, styles.bg.primary100, styles.flex.itemsCenter, styles.flex.justifyCenter, styles.spacing.mb3]}
                   >
-                    <Sparkles size={24} color={theme.colors.neutral[0]} />
+                    <Sparkles size={24} color="#FFFFFF" />
                   </LinearGradient>
-                  <Text variant="h6" style={{ textAlign: 'center' }}>
+                  <Text variant="h6" style={styles.textAlign.center}>
                     Beautiful Design
                   </Text>
-                  <Text variant="bodySmall" color="secondary" style={{ textAlign: 'center' }}>
+                  <Text variant="bodySmall" color="secondary" style={styles.textAlign.center}>
                     Modern aesthetics with thoughtful micro-interactions
                   </Text>
                 </Stack>
               </Card>
 
-              <Card style={styles.featureCard} padding={6}>
+              <Card style={[styles.flex.flex1, styles.size.minH120]} padding={6}>
                 <Stack spacing={3} align="center">
                   <LinearGradient
-                    colors={[theme.colors.secondary[500], theme.colors.secondary[600]]}
-                    style={styles.iconContainer}
+                    colors={['#6366F1', '#4F46E5']}
+                    style={[styles.size.w12, styles.size.h12, styles.rounded.xl, styles.bg.primary100, styles.flex.itemsCenter, styles.flex.justifyCenter, styles.spacing.mb3]}
                   >
-                    <Zap size={24} color={theme.colors.neutral[0]} />
+                    <Zap size={24} color="#FFFFFF" />
                   </LinearGradient>
-                  <Text variant="h6" style={{ textAlign: 'center' }}>
+                  <Text variant="h6" style={styles.textAlign.center}>
                     Performance
                   </Text>
-                  <Text variant="bodySmall" color="secondary" style={{ textAlign: 'center' }}>
+                  <Text variant="bodySmall" color="secondary" style={styles.textAlign.center}>
                     Optimized for smooth 60fps animations
                   </Text>
                 </Stack>
               </Card>
             </Stack>
 
-            <Card style={styles.featureCard} padding={6}>
+            <Card style={[styles.flex.flex1, styles.size.minH120]} padding={6}>
               <Stack spacing={3} align="center">
                 <LinearGradient
-                  colors={[theme.colors.success[500], theme.colors.success[600]]}
-                  style={styles.iconContainer}
+                  colors={['#22C55E', '#16A34A']}
+                  style={[styles.size.w12, styles.size.h12, styles.rounded.xl, styles.bg.primary100, styles.flex.itemsCenter, styles.flex.justifyCenter, styles.spacing.mb3]}
                 >
-                  <Shield size={24} color={theme.colors.neutral[0]} />
+                  <Shield size={24} color="#FFFFFF" />
                 </LinearGradient>
-                <Text variant="h6" style={{ textAlign: 'center' }}>
+                <Text variant="h6" style={styles.textAlign.center}>
                   Type Safety
                 </Text>
-                <Text variant="bodySmall" color="secondary" style={{ textAlign: 'center' }}>
+                <Text variant="bodySmall" color="secondary" style={styles.textAlign.center}>
                   Full TypeScript support with proper component typing
                 </Text>
               </Stack>

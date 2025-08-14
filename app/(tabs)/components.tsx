@@ -1,30 +1,14 @@
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useTheme } from '@/hooks/useTheme';
+import { useCommonStyles } from '@/hooks/useCommonStyles';
 import { Container, Stack } from '@/components/layout';
 import { Text, Card, Button, Input } from '@/components/ui';
 
 export default function ComponentsScreen() {
-  const theme = useTheme();
+  const styles = useCommonStyles();
   const [inputValue, setInputValue] = useState('');
   const [hasError, setHasError] = useState(false);
-
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: theme.colors.neutral[50],
-    },
-    header: {
-      backgroundColor: theme.colors.neutral[0],
-      paddingVertical: theme.spacing[6],
-      borderBottomWidth: 1,
-      borderBottomColor: theme.colors.neutral[200],
-    },
-    section: {
-      marginBottom: theme.spacing[8],
-    },
-  });
 
   const validateInput = (value: string) => {
     setInputValue(value);
@@ -32,23 +16,23 @@ export default function ComponentsScreen() {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.common.container}>
       {/* Header */}
-      <Container style={styles.header}>
+      <Container style={styles.common.header}>
         <Stack spacing={2} align="center">
           <Text variant="h2">Component Library</Text>
-          <Text variant="body" color="secondary" style={{ textAlign: 'center' }}>
+          <Text variant="body" color="secondary" style={styles.textAlign.center}>
             Explore our comprehensive collection of UI components
           </Text>
         </Stack>
       </Container>
 
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Container style={{ paddingVertical: theme.spacing[6] }}>
+        <Container style={styles.spacing.py6}>
           <Stack spacing={8}>
             
             {/* Typography Section */}
-            <Card style={styles.section}>
+            <Card style={styles.spacing.mb8}>
               <Stack spacing={4}>
                 <Text variant="h4">Typography</Text>
                 <Text variant="h1">Heading 1</Text>
@@ -66,7 +50,7 @@ export default function ComponentsScreen() {
             </Card>
 
             {/* Buttons Section */}
-            <Card style={styles.section}>
+            <Card style={styles.spacing.mb8}>
               <Stack spacing={6}>
                 <Text variant="h4">Buttons</Text>
                 
@@ -100,7 +84,7 @@ export default function ComponentsScreen() {
             </Card>
 
             {/* Inputs Section */}
-            <Card style={styles.section}>
+            <Card style={styles.spacing.mb8}>
               <Stack spacing={6}>
                 <Text variant="h4">Input Fields</Text>
                 
@@ -138,7 +122,7 @@ export default function ComponentsScreen() {
             </Card>
 
             {/* Color Palette Section */}
-            <Card style={styles.section}>
+            <Card style={styles.spacing.mb8}>
               <Stack spacing={4}>
                 <Text variant="h4">Color System</Text>
                 <Text variant="body" color="secondary">
@@ -150,14 +134,14 @@ export default function ComponentsScreen() {
                   <Stack spacing={2}>
                     <Text variant="h6">Primary Colors</Text>
                     <Stack direction="horizontal" spacing={2} wrap>
-                      {Object.entries(theme.colors.primary).slice(3, 8).map(([shade, color]) => (
+                      {['#93C5FD', '#60A5FA', '#3B82F6', '#2563EB', '#1D4ED8'].map((color, index) => (
                         <Card
-                          key={shade}
+                          key={index}
                           style={{
                             backgroundColor: color,
                             width: 60,
                             height: 40,
-                            borderRadius: theme.borderRadius.md,
+                            borderRadius: 6,
                           }}
                           padding={0}
                         />
@@ -170,37 +154,37 @@ export default function ComponentsScreen() {
                     <Stack direction="horizontal" spacing={2} wrap>
                       <Card
                         style={{
-                          backgroundColor: theme.colors.success[500],
+                          backgroundColor: '#22C55E',
                           width: 60,
                           height: 40,
-                          borderRadius: theme.borderRadius.md,
+                          borderRadius: 6,
                         }}
                         padding={0}
                       />
                       <Card
                         style={{
-                          backgroundColor: theme.colors.warning[500],
+                          backgroundColor: '#F59E0B',
                           width: 60,
                           height: 40,
-                          borderRadius: theme.borderRadius.md,
+                          borderRadius: 6,
                         }}
                         padding={0}
                       />
                       <Card
                         style={{
-                          backgroundColor: theme.colors.error[500],
+                          backgroundColor: '#EF4444',
                           width: 60,
                           height: 40,
-                          borderRadius: theme.borderRadius.md,
+                          borderRadius: 6,
                         }}
                         padding={0}
                       />
                       <Card
                         style={{
-                          backgroundColor: theme.colors.info[500],
+                          backgroundColor: '#0EA5E9',
                           width: 60,
                           height: 40,
-                          borderRadius: theme.borderRadius.md,
+                          borderRadius: 6,
                         }}
                         padding={0}
                       />
