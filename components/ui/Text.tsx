@@ -13,7 +13,7 @@ export interface TextProps {
   children: React.ReactNode;
   variant?: TextVariant;
   color?: TextColor;
-  style?: TextStyle;
+  style?: TextStyle | TextStyle[];
   numberOfLines?: number;
   testID?: string;
 }

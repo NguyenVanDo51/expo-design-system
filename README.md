@@ -145,6 +145,146 @@ The design system includes comprehensive responsive features:
 - **Responsive Components**: All components adapt to different screen sizes
 - **Platform Optimization**: Platform-specific styling for iOS, Android, and Web
 
+## 🎨 Common Style Utilities
+
+The design system includes a comprehensive set of utility classes for rapid development:
+
+### Flexbox Utilities
+```tsx
+import { commonStyles } from '@/theme';
+
+// Basic flex
+<View style={commonStyles.flex.flex1}>
+<View style={[commonStyles.flex.flexRow, commonStyles.flex.justifyBetween]}>
+<View style={[commonStyles.flex.flexCol, commonStyles.flex.itemsCenter]}>
+```
+
+**Available Classes:**
+- **Flex**: `flex1`, `flex2`, `flex3`, `flexNone`
+- **Direction**: `flexRow`, `flexCol`, `flexWrap`, `flexNoWrap`
+- **Justify Content**: `justifyStart`, `justifyEnd`, `justifyCenter`, `justifyBetween`, `justifyAround`, `justifyEvenly`
+- **Align Items**: `itemsStart`, `itemsEnd`, `itemsCenter`, `itemsStretch`
+- **Align Self**: `selfStart`, `selfEnd`, `selfCenter`, `selfStretch`
+
+### Spacing System
+```tsx
+// Margin and padding utilities
+<View style={[commonStyles.spacing.m4, commonStyles.spacing.p6]}>
+<View style={[commonStyles.spacing.mx2, commonStyles.spacing.py4]}>
+<Text style={commonStyles.spacing.mt3}>Spaced text</Text>
+```
+
+**Spacing Scale**: 0, 1, 2, 3, 4, 5, 6, 8, 10, 12 (based on 8px system)
+- **Margin**: `m*`, `mx*`, `my*`, `mt*`, `mb*`, `ml*`, `mr*`
+- **Padding**: `p*`, `px*`, `py*`, `pt*`, `pb*`, `pl*`, `pr*`
+
+### Colors
+```tsx
+// Background colors
+<View style={commonStyles.bg.primary600}>
+<View style={commonStyles.bg.gray100}>
+
+// Text colors
+<Text style={commonStyles.text.primary600}>Primary text</Text>
+<Text style={commonStyles.text.gray700}>Secondary text</Text>
+```
+
+**Available Colors:**
+- **Backgrounds**: `white`, `gray50-900`, `primary50-600`, `secondary500-600`, `success500-600`, `warning500-600`, `error500-600`
+- **Text**: `white`, `gray400-900`, `primary500-600`, `secondary600`, `success600`, `warning600`, `error600`, `info600`
+
+### Border & Radius
+```tsx
+// Border radius
+<View style={commonStyles.rounded.lg}>
+<View style={commonStyles.rounded.full}>
+
+// Borders
+<View style={[commonStyles.border.border, commonStyles.border.borderGray300]}>
+```
+
+**Border Radius**: `none`, `sm`, `base`, `md`, `lg`, `xl`, `2xl`, `3xl`, `full`
+**Border**: `border`, `border2`, `borderT`, `borderB`, `borderL`, `borderR`
+
+### Sizing
+```tsx
+// Width and height
+<View style={commonStyles.size.w48}>
+<View style={[commonStyles.size.wFull, commonStyles.size.h40]}>
+```
+
+**Sizes**: `w8-60`, `wFull`, `h8-60`, `hFull`, `minH32-120`
+
+### Shadows & Effects
+```tsx
+// Shadows
+<View style={commonStyles.shadow.md}>
+<Card style={commonStyles.shadow.lg}>
+
+// Opacity
+<View style={commonStyles.opacity.opacity75}>
+```
+
+**Shadows**: `sm`, `base`, `md`, `lg`, `xl`
+**Opacity**: `opacity0`, `opacity25`, `opacity50`, `opacity75`, `opacity90`, `opacity100`
+
+### Pre-built Components
+```tsx
+// Common UI patterns
+<View style={commonStyles.common.card}>
+<View style={commonStyles.common.iconContainer}>
+<TouchableOpacity style={[commonStyles.common.button, commonStyles.common.buttonPrimary]}>
+<TextInput style={commonStyles.common.input}>
+```
+
+**Pre-built Styles:**
+- `container`: Full-screen container with background
+- `card`: Elevated card with shadow and border
+- `header`: Section header with bottom border
+- `iconContainer`: Circular icon background
+- `settingItem`: List item with padding and shadow
+- `input`: Styled text input
+- `button`: Base button styles
+- `buttonPrimary`: Primary button variant
+- `buttonSecondary`: Secondary button variant
+- `buttonOutline`: Outline button variant
+
+### Usage Examples
+```tsx
+import { commonStyles } from '@/theme';
+
+// Combining multiple utilities
+<View style={[
+  commonStyles.flex.flex1,
+  commonStyles.bg.white,
+  commonStyles.spacing.p4,
+  commonStyles.rounded.lg,
+  commonStyles.shadow.md
+]}>
+  <Text style={[
+    commonStyles.text.gray900,
+    commonStyles.spacing.mb2
+  ]}>
+    Title
+  </Text>
+  <View style={[
+    commonStyles.flex.flexRow,
+    commonStyles.flex.justifyBetween,
+    commonStyles.flex.itemsCenter
+  ]}>
+    <Text style={commonStyles.text.gray600}>
+      Subtitle
+    </Text>
+    <TouchableOpacity style={[
+      commonStyles.common.button,
+      commonStyles.common.buttonPrimary
+    ]}>
+      <Text style={commonStyles.text.white}>Action</Text>
+    </TouchableOpacity>
+  </View>
+</View>
+```
+
 ## 🔧 Customization
 
 ### Extending the Theme

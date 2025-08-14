@@ -144,7 +144,9 @@ export default function ComponentsScreen() {
                             borderRadius: 6,
                           }}
                           padding={0}
-                        />
+                        >
+                          {/* Color swatch */}
+                        </Card>
                       ))}
                     </Stack>
                   </Stack>
@@ -160,7 +162,9 @@ export default function ComponentsScreen() {
                           borderRadius: 6,
                         }}
                         padding={0}
-                      />
+                      >
+                        {/* Success color */}
+                      </Card>
                       <Card
                         style={{
                           backgroundColor: '#F59E0B',
@@ -169,7 +173,9 @@ export default function ComponentsScreen() {
                           borderRadius: 6,
                         }}
                         padding={0}
-                      />
+                      >
+                        {/* Warning color */}
+                      </Card>
                       <Card
                         style={{
                           backgroundColor: '#EF4444',
@@ -178,7 +184,9 @@ export default function ComponentsScreen() {
                           borderRadius: 6,
                         }}
                         padding={0}
-                      />
+                      >
+                        {/* Error color */}
+                      </Card>
                       <Card
                         style={{
                           backgroundColor: '#0EA5E9',
@@ -187,7 +195,9 @@ export default function ComponentsScreen() {
                           borderRadius: 6,
                         }}
                         padding={0}
-                      />
+                      >
+                        {/* Info color */}
+                      </Card>
                     </Stack>
                   </Stack>
                 </Stack>

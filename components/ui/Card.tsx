@@ -3,8 +3,8 @@ import { View, ViewStyle, StyleSheet } from 'react-native';
 import { useTheme } from '@/hooks/useTheme';
 
 export interface CardProps {
-  children: React.ReactNode;
-  style?: ViewStyle;
+  children?: React.ReactNode;
+  style?: ViewStyle | ViewStyle[];
   padding?: keyof typeof import('@/theme').spacing;
   elevation?: 'sm' | 'base' | 'md' | 'lg' | 'xl';
 }

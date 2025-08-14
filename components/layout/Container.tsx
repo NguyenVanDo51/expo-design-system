@@ -25,7 +25,7 @@ export function Container({
     lg: 1024,
     xl: 1280,
     '2xl': 1536,
-    full: '100%',
+    full: '100%' as const,
   };
 
   const containerStyles = StyleSheet.create({
