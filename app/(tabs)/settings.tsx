@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, Switch } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '@/hooks/useTheme';
 import { Container, Stack } from '@/components/layout';
-import { Text, Card, Button } from '@/components/ui';
+import { Text, Card, Button, Input } from '@/components/ui';
 import { 
   Bell, 
   Shield, 
