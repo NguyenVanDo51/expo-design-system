@@ -1,5 +1,5 @@
 import { Tabs } from 'expo-router';
-import { Chrome as Home, Palette, BookOpen, Settings, Brain, Plus } from 'lucide-react-native';
+import { Chrome as Home, Palette, BookOpen, Settings } from 'lucide-react-native';
 import { useTheme } from '@/hooks/useTheme';
 import { useResponsive } from '@/hooks/useResponsive';
 
@@ -30,7 +30,25 @@ export default function TabLayout() {
         options={{
           title: 'Home',
           tabBarIcon: ({ size, color }) => (
-            <Brain size={isLarge ? 24 : 20} color={color} />
+            <Home size={isLarge ? 24 : 20} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="components"
+        options={{
+          title: 'Components',
+          tabBarIcon: ({ size, color }) => (
+            <Palette size={isLarge ? 24 : 20} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="examples"
+        options={{
+          title: 'Examples',
+          tabBarIcon: ({ size, color }) => (
+            <BookOpen size={isLarge ? 24 : 20} color={color} />
           ),
         }}
       />

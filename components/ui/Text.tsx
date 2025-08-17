@@ -32,13 +32,13 @@ export function Text({
     // Headings
     h1: {
       fontSize: theme.typography.sizes['5xl'],
-      lineHeight: theme.typography.lineHeights['5xl'],
+      lineHeight: theme.typography.lineHeights['5xl'] * theme.typography.sizes['5xl'],
       fontFamily: theme.typography.fonts.bold,
       letterSpacing: theme.typography.letterSpacing.tight,
     },
     h2: {
       fontSize: theme.typography.sizes['4xl'],
-      lineHeight: theme.typography.lineHeights['4xl'],
+      lineHeight: theme.typography.lineHeights['4xl'] * theme.typography.sizes['4xl'],
       fontFamily: theme.typography.fonts.bold,
       letterSpacing: theme.typography.letterSpacing.tight,
     },
