@@ -22,6 +22,7 @@ export interface ModalProps {
   visible: boolean;
   showCloseButton?: boolean;
   showPanResponder?: boolean;
+  scrollEnabled?: boolean;
   onClose: () => void;
   title?: string;
   children: React.ReactNode;
@@ -31,13 +32,14 @@ export function Modal({
   visible,
   showCloseButton = true,
   showPanResponder = false,
+  scrollEnabled = true,
   onClose,
   title,
   children,
 }: ModalProps) {
   const theme = useTheme();
   const styles = createStyles(theme);
-  const MODAL_HEIGHT = SCREEN_HEIGHT * (showPanResponder ? 0.5 : 1);
+  const MODAL_HEIGHT = SCREEN_HEIGHT * (showPanResponder ? 0.8 : 1);
   const slideAnim = useRef(new Animated.Value(0)).current;
   const panY = useRef(new Animated.Value(0)).current;
 
@@ -181,63 +183,68 @@ export function Modal({
           </View>
 
           {/* Content */}
-          <ScrollView
-            style={styles.content}
-            bounces={false}
-            showsVerticalScrollIndicator={false}
-            scrollEnabled={true}
-          >
-            <View style={styles.contentPadding}>{children}</View>
-          </ScrollView>
+          {scrollEnabled ? (
+            <ScrollView
+              style={styles.content}
+              bounces={false}
+              showsVerticalScrollIndicator={false}
+              scrollEnabled={true}
+            >
+              <View style={styles.contentPadding}>{children}</View>
+            </ScrollView>
+          ) : (
+            <View style={[styles.contentPadding, { flex: 1 }]}>{children}</View>
+          )}
         </Animated.View>
       </View>
     </ReactNativeModal>
   );
 }
 
-const createStyles = (theme: Theme) => StyleSheet.create({
-  overlay: {
-    flex: 1,
-    justifyContent: 'flex-end',
-  },
-  backgroundOverlay: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  modalContainer: {
-    backgroundColor: theme.colors.neutral[0],
-    borderTopLeftRadius: theme.borderRadius.xl,
-    borderTopRightRadius: theme.borderRadius.xl,
-    ...theme.shadows.lg,
-  },
-  dragHandleArea: {
-    alignItems: 'center',
-    paddingVertical: theme.spacing[3],
-    paddingHorizontal: theme.spacing[5],
-  },
-  dragHandle: {
-    width: 40,
-    height: 4,
-    backgroundColor: theme.colors.neutral[300],
-    borderRadius: theme.borderRadius.sm,
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    paddingHorizontal: theme.spacing[4],
-    paddingVertical: theme.spacing[3],
-    borderBottomWidth: 1,
-    borderBottomColor: theme.colors.neutral[200],
-    gap: theme.spacing[1],
-  },
-  closeButton: {
-    padding: theme.spacing[1],
-  },
-  content: {
-    flex: 1,
-  },
-  contentPadding: {
-    padding: theme.spacing[5],
-  },
-});
+const createStyles = (theme: Theme) =>
+  StyleSheet.create({
+    overlay: {
+      flex: 1,
+      justifyContent: 'flex-end',
+    },
+    backgroundOverlay: {
+      ...StyleSheet.absoluteFillObject,
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    },
+    modalContainer: {
+      backgroundColor: theme.colors.neutral[0],
+      borderTopLeftRadius: theme.borderRadius.xl,
+      borderTopRightRadius: theme.borderRadius.xl,
+      ...theme.shadows.lg,
+    },
+    dragHandleArea: {
+      alignItems: 'center',
+      paddingVertical: theme.spacing[3],
+      paddingHorizontal: theme.spacing[5],
+    },
+    dragHandle: {
+      width: 40,
+      height: 4,
+      backgroundColor: theme.colors.neutral[300],
+      borderRadius: theme.borderRadius.sm,
+    },
+    header: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'flex-start',
+      paddingHorizontal: theme.spacing[4],
+      paddingVertical: theme.spacing[3],
+      borderBottomWidth: 1,
+      borderBottomColor: theme.colors.neutral[200],
+      gap: theme.spacing[1],
+    },
+    closeButton: {
+      padding: theme.spacing[1],
+    },
+    content: {
+      flex: 1,
+    },
+    contentPadding: {
+      padding: theme.spacing[5],
+    },
+  });

@@ -1,6 +1,18 @@
-# Expo Design System
+# QuizLingo
 
-A comprehensive, production-ready design system built with React Native and Expo. This project provides a complete foundation for building consistent, accessible, and beautiful mobile applications.
+A modern language learning app that combines the best of Duolingo and Quizlet. QuizLingo allows users to add their own words and study them using engaging, Duolingo-style exercises and interactive learning methods.
+
+## 📚 Overview
+
+QuizLingo bridges the gap between vocabulary collection and interactive learning by offering:
+
+- **Personal Vocabulary Builder**: Add new words, phrases, and their translations to your personal dictionary
+- **Duolingo-Style Learning**: Practice with gamified exercises including multiple choice, translation, and speaking challenges
+- **Spaced Repetition**: Smart algorithm ensures you review words just before you're likely to forget them
+- **Progress Tracking**: Monitor your learning journey with detailed statistics and achievements
+- **Multiple Study Modes**: Choose from flashcards, typing exercises, listening comprehension, and more
+
+Built with a comprehensive, production-ready design system using React Native and Expo, providing a consistent and beautiful user experience across all platforms.
 
 ## 🎨 Features
 
